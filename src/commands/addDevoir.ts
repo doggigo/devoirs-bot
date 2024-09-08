@@ -1,12 +1,12 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-  .setName("ajouterDevoir")
+  .setName("ajouterdevoir")
   .setDescription("Ajouter un devoir")
   .setDefaultMemberPermissions(null)
   .addStringOption((option) =>
     option
-      .setName("matière")
+      .setName("matiere")
       .setDescription("Matière du devoir")
       .setChoices(
         { name: "Maths", value: "maths" },
@@ -14,7 +14,7 @@ export const data = new SlashCommandBuilder()
         { name: "Informatique", value: "informatique" },
         { name: "SI", value: "si" },
         { name: "Anglais", value: "anglais" },
-        { name: "Français", value: "francais" },
+        { name: "Francais", value: "francais" },
         { name: "Autre", value: "autre" }
       )
       .setRequired(true)
@@ -33,4 +33,5 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: CommandInteraction) {
+  await interaction.reply("Hey");
 }
