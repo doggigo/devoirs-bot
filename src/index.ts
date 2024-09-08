@@ -7,7 +7,7 @@ import "./client-augmentation.d.ts";
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
-import type { Connection } from "mysql2/promise";
+import type { Connection } from "mysql";
 import { createDevoirsConnection } from "./db.ts";
 
 export const { TOKEN } = Bun.env;

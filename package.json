@@ -13,9 +13,10 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@types/mysql": "^2.15.26",
     "bun": "",
     "discord.js": "^14.16.1",
     "latest": "",
-    "mysql2": "^3.11.0"
+    "mysql": "^2.18.1"
   }
 }
