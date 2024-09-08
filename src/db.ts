@@ -2,8 +2,8 @@ import type { Connection } from 'mysql2';
 import mysql from 'mysql2/promise';
 import type { Matiere } from './types';
 
-export async function createConnection(host:string, username:string, password:string, dbName:string) {
-  return await mysql.createConnection({
+export function createDevoirsConnection(host:string, username:string, password:string, dbName:string) {
+  return mysql.createConnection({
     host: host,
     user: username,
     password: password,
@@ -11,9 +11,9 @@ export async function createConnection(host:string, username:string, password:st
   });
 }
 
-export async function addDevoir(connection: Connection, matiere:Matiere, date:string, content:string) {
+export async function addDevoir(connection: Connection, matiere:Matiere, date:string, contenu:string) {
   try {
-    connection.execute('INSERT INTO Devoirs VALUES (?, ?, ?)', [matiere, date, content]);
+    connection.execute('INSERT INTO Devoirs(matiere, date_limite, contenu) VALUES (?, ?, ?)', [matiere, date, contenu]);
     return true;
   } catch {
     return false;
