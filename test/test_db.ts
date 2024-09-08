@@ -12,7 +12,7 @@ async function main() {
     database: DB_NAME
   });
 
-  conn.query('SELECT * FROM Devoirs');
+  //conn.query('SELECT * FROM Devoirs', (a,b,c) => console.log(b));
 }
 
 main();

@@ -25,7 +25,9 @@ export function addDevoir(connection: Connection, matiere: Matiere, date: string
 }
 
 export function getDevoirs(connection: Connection) {
-  return new Promise<null|Object>((resolve, reject) => connection.query("SELECT * FROM Devoirs",(error, result:Object|null, fields) => {
-    error? reject(error) : resolve(result)
-  }));
+  return new Promise<null | Object>((resolve, reject) =>
+    connection.query("SELECT * FROM Devoirs", (error, result: Object | null, fields) => {
+      error ? reject(error) : resolve(result);
+    })
+  );
 }

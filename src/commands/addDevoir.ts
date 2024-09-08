@@ -1,4 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { getDevoirs } from "../db";
+import { DBConnection } from "..";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")
@@ -33,5 +35,4 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: CommandInteraction) {
-  await interaction.reply("c'est bon")
 }
