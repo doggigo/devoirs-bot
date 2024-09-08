@@ -11,6 +11,8 @@ async function main() {
     password: DB_PASSWORD,
     database: DB_NAME
   });
+
+  conn.query('SELECT * FROM Devoirs');
 }
 
 main();

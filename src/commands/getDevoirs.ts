@@ -9,5 +9,5 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction: CommandInteraction) {
   let devoirs = await getDevoirs(DBConnection);
-  devoirs? interaction.reply(devoirs as string) : null;
+  devoirs? await interaction.reply(devoirs as string) : null;
 }
