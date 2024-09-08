@@ -15,6 +15,7 @@
   "dependencies": {
     "bun": "",
     "discord.js": "^14.16.1",
-    "latest": ""
+    "latest": "",
+    "mysql2": "^3.11.0"
   }
 }

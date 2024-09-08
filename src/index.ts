@@ -9,6 +9,7 @@ import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
 
 export const { TOKEN } = Bun.env;
+const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME } = Bun.env;
 
 const intents: GatewayIntentBits[] = [
   GatewayIntentBits.Guilds,
