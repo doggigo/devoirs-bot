@@ -1,0 +1,20 @@
+{
+  "name": "devoirs-bot",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.ts",
+    "screen": " screen -L -Logfile ./logs.txt -dmS devoirs-bot bun start"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "bun": "",
+    "discord.js": "^14.16.1",
+    "latest": ""
+  }
+}
