@@ -12,9 +12,9 @@ import { createDevoirsConnection } from "./db.ts";
 
 export const { TOKEN } = Bun.env;
 const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME } = Bun.env;
-let DBConnection:Connection;
+export let DBConnection: Connection;
 
-if(!(TOKEN && DB_USERNAME && DB_PASSWORD && DB_HOST && DB_NAME)) throw new Error('.env is not set correctly');
+if (!(TOKEN && DB_USERNAME && DB_PASSWORD && DB_HOST && DB_NAME)) throw new Error(".env is not set correctly");
 
 const intents: GatewayIntentBits[] = [
   GatewayIntentBits.Guilds,
@@ -30,9 +30,13 @@ client.commands = new Collection();
 client.once("ready", async () => {
   console.log(`Connecté en tant que ${client.user?.id}`);
   await fetchSlashCommands();
-  LoadSlashCommands();
-  DBConnection = await createDevoirsConnection(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-  DBConnection? console.log("Database initialized") : () => {throw new Error("DB Error")};
+  await LoadSlashCommands();
+  DBConnection = createDevoirsConnection(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+  DBConnection
+    ? console.log("Database initialized")
+    : () => {
+        throw new Error("DB Error");
+      };
 });
 
 client.on("interactionCreate", async (interaction) => {
@@ -41,9 +45,7 @@ client.on("interactionCreate", async (interaction) => {
   const command = interaction.client.commands.get(interaction.commandName);
 
   if (!command) {
-    console.error(
-      `il est debile ${interaction.user.globalName} ca existe pas la commande ${interaction.commandName}`
-    );
+    console.error(`il est debile ${interaction.user.globalName} ca existe pas la commande ${interaction.commandName}`);
     return;
   }
 
