@@ -3,7 +3,7 @@ import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")
-  .setDescription("Ajouter un devoir")
+  .setDescription("ajouter un devoir")
   .setDefaultMemberPermissions(null)
   .addStringOption((option) =>
     option
