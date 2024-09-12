@@ -7,6 +7,7 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(null);
 
 export async function execute(interaction: CommandInteraction) {
+  await interaction.reply('hi');
   //let devoirs = await getDevoirs(DBConnection);
   // devoirs? await interaction.reply(devoirs as string) : null;
 }
