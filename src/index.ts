@@ -10,9 +10,9 @@ import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
 
 export const { TOKEN, DB_NAME } = Bun.env;
 
-export const dataBase = sqlite.open("DB_NAME", { create: false });
-
 if (!(TOKEN && DB_NAME)) throw new Error(".env is not set correctly");
+
+export const dataBase = sqlite.open(DB_NAME, { create: false });
 
 const intents: GatewayIntentBits[] = [
   GatewayIntentBits.Guilds,
