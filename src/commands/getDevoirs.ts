@@ -2,8 +2,8 @@ import { SlashCommandBuilder, type CommandInteraction } from "discord.js";
 // import { getDevoirs } from "../db";
 
 export const data = new SlashCommandBuilder()
-  .setName("ajouterdevoir")
-  .setDescription("Ajouter un devoir")
+  .setName("devoirs")
+  .setDescription("avoir les devoirs")
   .setDefaultMemberPermissions(null);
 
 export async function execute(interaction: CommandInteraction) {
