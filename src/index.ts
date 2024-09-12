@@ -1,6 +1,6 @@
 // Discord imports
 import { Client, Collection, GatewayIntentBits } from "discord.js";
-import sqlite from "bun:sqlite"
+import sqlite from "bun:sqlite";
 // module augmentations imports
 import "./client-augmentation.d.ts";
 
@@ -8,13 +8,11 @@ import "./client-augmentation.d.ts";
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
 
-export const { TOKEN } = Bun.env;
+export const { TOKEN, DB_NAME } = Bun.env;
 
-// export const dataBase = sqlite.open('')
+export const dataBase = sqlite.open("DB_NAME", { create: false });
 
-const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME } = Bun.env;
-
-if (!(TOKEN && DB_USERNAME && DB_PASSWORD && DB_HOST && DB_NAME)) throw new Error(".env is not set correctly");
+if (!(TOKEN && DB_NAME)) throw new Error(".env is not set correctly");
 
 const intents: GatewayIntentBits[] = [
   GatewayIntentBits.Guilds,
