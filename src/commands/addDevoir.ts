@@ -23,7 +23,7 @@ export const data = new SlashCommandBuilder()
   .addStringOption((option) =>
     option
       .setName("date")
-      .setDescription("Date limite de redu du devoir")
+      .setDescription("Date limite de rendu du devoir")
       .setRequired(true)
   )
   .addStringOption((option) =>
@@ -34,4 +34,6 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: CommandInteraction) {
+  let matiere = interaction.options.get('matiere')?.value as string;
+  await interaction.reply(matiere);
 }
