@@ -1,6 +1,5 @@
 import { SlashCommandBuilder, type CommandInteraction } from "discord.js";
-import { DBConnection } from "..";
-import { getDevoirs } from "../db";
+// import { getDevoirs } from "../db";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")
@@ -8,6 +7,6 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(null);
 
 export async function execute(interaction: CommandInteraction) {
-  let devoirs = await getDevoirs(DBConnection);
-  devoirs? await interaction.reply(devoirs as string) : null;
+  //let devoirs = await getDevoirs(DBConnection);
+  // devoirs? await interaction.reply(devoirs as string) : null;
 }

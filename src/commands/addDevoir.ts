@@ -1,6 +1,5 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
-import { getDevoirs } from "../db";
-import { DBConnection } from "..";
+// import { getDevoirs } from "../db";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")

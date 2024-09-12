@@ -1,18 +1,18 @@
 // Discord imports
 import { Client, Collection, GatewayIntentBits } from "discord.js";
-
+import sqlite from "bun:sqlite"
 // module augmentations imports
 import "./client-augmentation.d.ts";
 
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
-import type { Connection } from "mysql";
-import { createDevoirsConnection } from "./db.ts";
 
 export const { TOKEN } = Bun.env;
+
+// export const dataBase = sqlite.open('')
+
 const { DB_USERNAME, DB_PASSWORD, DB_HOST, DB_NAME } = Bun.env;
-export let DBConnection: Connection;
 
 if (!(TOKEN && DB_USERNAME && DB_PASSWORD && DB_HOST && DB_NAME)) throw new Error(".env is not set correctly");
 
@@ -31,12 +31,6 @@ client.once("ready", async () => {
   console.log(`Connecté en tant que ${client.user?.id}`);
   await fetchSlashCommands();
   await LoadSlashCommands();
-  DBConnection = createDevoirsConnection(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-  DBConnection
-    ? console.log("Database initialized")
-    : () => {
-        throw new Error("DB Error");
-      };
 });
 
 client.on("interactionCreate", async (interaction) => {
