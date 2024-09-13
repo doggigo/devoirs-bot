@@ -1,5 +1,4 @@
 import { EmbedBuilder, SlashCommandBuilder, type CommandInteraction } from "discord.js";
-import sqlite from "bun:sqlite";
 import { db } from "..";
 import { isDevoirTable, type DevoirTable } from "../types";
 

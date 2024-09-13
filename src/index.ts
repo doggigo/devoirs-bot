@@ -14,7 +14,6 @@ import "./client-augmentation.d.ts";
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
-import { days } from "./types.ts";
 import { handleDateAutoComplete } from "./autocomplete.ts";
 
 export const { TOKEN, DB_NAME } = Bun.env;
