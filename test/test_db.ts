@@ -1,7 +1,4 @@
+import sqlite from 'bun:sqlite'
 
-async function main() {
-
-  //conn.query('SELECT * FROM Devoirs', (a,b,c) => console.log(b));
-}
-
-main();
+let db = sqlite.open('devoirs.db');
+db.query('SELECT * FROM Devoirs').all();

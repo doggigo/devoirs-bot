@@ -3,8 +3,8 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run src/index.ts",
-    "screen": " screen -L -Logfile ./logs.txt -dmS devoirs-bot bun start"
+    "start": "bun run ./src/index.ts",
+    "screen": "screen -L -Logfile ./logs.txt -dmS devoirs-bot bun start"
   },
   "devDependencies": {
     "@types/bun": "latest"
