@@ -11,7 +11,7 @@ export const data = new SlashCommandBuilder()
 const translateDate = (d: string) => `${d.substring(8, 10)}/${d.substring(5, 7)}/${d.substring(0, 4)}`;
 
 export async function execute(interaction: CommandInteraction) {
-  let devoirs: any[] | null = dataBase.query("SELECT * FROM Devoirs").all();
+  let devoirs: any[] | null = dataBase.query("SELECT * FROM Devoirs WHERE DATE(date_rendu) >= DATE('now');").all();
 
   devoirs = devoirs.every((d) => isDevoirTable(d)) ? (devoirs as DevoirTable[]) : null;
   if (!devoirs) return;
@@ -26,5 +26,5 @@ export async function execute(interaction: CommandInteraction) {
     });
   }
 
-  await interaction.reply({ content: "hey", embeds: [embed] });
+  await interaction.reply({ content: "", embeds: [embed] });
 }
