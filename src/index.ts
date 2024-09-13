@@ -14,6 +14,8 @@ import "./client-augmentation.d.ts";
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
+import { days } from "./types.ts";
+import { handleDateAutoComplete } from "./autocomplete.ts";
 
 export const { TOKEN, DB_NAME } = Bun.env;
 
@@ -56,34 +58,6 @@ const handleChatInputCommand = async (interaction: CommandInteraction) => {
       ephemeral: true,
     });
   }
-};
-
-const toSqliteDate = (date: Date) =>
-  `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
-
-const generateDefaultDates = () => {
-  let dateNow = new Date(Date.now());
-  let nextDates: Date[] = [];
-
-  for (let i = 0; i <= 30; i++) {
-    let newDate = new Date(dateNow);
-    newDate.setDate(dateNow.getDate() + i);
-    nextDates.push(newDate);
-  }
-
-  return nextDates.map((i) => {
-    return {
-      name: i.toLocaleDateString(),
-      value: toSqliteDate(i),
-    };
-  });
-};
-
-const handleDateAutoComplete = async (interaction: AutocompleteInteraction) => {
-  const focusedValue = interaction.options.getFocused();
-
-  const defaultResults = generateDefaultDates();
-  interaction.respond(defaultResults);
 };
 
 client.on("interactionCreate", async (interaction) => {

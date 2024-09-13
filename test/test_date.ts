@@ -10,7 +10,7 @@ for (let i = 0; i <= 30; i++) {
 const result = nextDates.map((i) => {
   return {
     name: i.toLocaleDateString(),
-    value: `${i.getFullYear()}-${(i.getMonth() + 1).toString().padStart(2, '0')}-${i.getDate().toString().padStart(2, '0')}`,
+    value: i.getDay(),
   };
 });
 console.log(result);

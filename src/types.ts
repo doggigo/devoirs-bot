@@ -6,6 +6,8 @@ export type Matiere =
   | "Français"
   | "Anglais";
 
+export const days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+
 export class Devoir {
   date: string;
   matiere: Matiere;
