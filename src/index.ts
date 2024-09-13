@@ -1,5 +1,12 @@
 // Discord imports
-import { Client, Collection, GatewayIntentBits } from "discord.js";
+import {
+  AutocompleteInteraction,
+  Client,
+  Collection,
+  CommandInteraction,
+  GatewayIntentBits,
+  type Interaction,
+} from "discord.js";
 import sqlite from "bun:sqlite";
 // module augmentations imports
 import "./client-augmentation.d.ts";
@@ -31,9 +38,7 @@ client.once("ready", async () => {
   await LoadSlashCommands();
 });
 
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
+const handleChatInputCommand = async (interaction: CommandInteraction) => {
   const command = interaction.client.commands.get(interaction.commandName);
 
   if (!command) {
@@ -50,6 +55,44 @@ client.on("interactionCreate", async (interaction) => {
       content: "EUH Y A UN PROBLEME AVEC TA COMMANDE DSL",
       ephemeral: true,
     });
+  }
+};
+
+const toSqliteDate = (date: Date) =>
+  `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+
+const generateDefaultDates = () => {
+  let dateNow = new Date(Date.now());
+  let nextDates: Date[] = [];
+
+  for (let i = 0; i <= 30; i++) {
+    let newDate = new Date(dateNow);
+    newDate.setDate(dateNow.getDate() + i);
+    nextDates.push(newDate);
+  }
+
+  return nextDates.map((i) => {
+    return {
+      name: i.toLocaleDateString(),
+      value: toSqliteDate(i),
+    };
+  });
+};
+
+const handleDateAutoComplete = async (interaction: AutocompleteInteraction) => {
+  const focusedValue = interaction.options.getFocused();
+
+  const defaultResults = generateDefaultDates();
+  interaction.respond(defaultResults);
+};
+
+client.on("interactionCreate", async (interaction) => {
+  if (interaction.isChatInputCommand()) {
+    handleChatInputCommand(interaction);
+  }
+
+  if (interaction.isAutocomplete()) {
+    handleDateAutoComplete(interaction); // no need to handle different commands bc autocomplete is only on dates
   }
 });
 

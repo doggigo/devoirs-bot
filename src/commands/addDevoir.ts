@@ -25,6 +25,7 @@ export const data = new SlashCommandBuilder()
       .setName("date")
       .setDescription("Date limite de rendu du devoir")
       .setRequired(true)
+      .setAutocomplete(true)
   )
   .addStringOption((option) =>
     option
