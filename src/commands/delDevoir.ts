@@ -1,6 +1,6 @@
 import type { CommandInteraction } from "discord.js";
 import { SlashCommandBuilder } from "discord.js";
-import sqlite from 'bun:sqlite';
+import { db } from "..";
 
 export const data = new SlashCommandBuilder()
   .setName("supprimerdevoir")
@@ -9,8 +9,6 @@ export const data = new SlashCommandBuilder()
   .addNumberOption((opt) => opt.setName("id").setDescription("identifiant du devoir").setMinValue(1));
 
 export async function execute(interaction: CommandInteraction) {
-  let db = sqlite.open('devoirs.db');
-
   let devoirId = interaction.options.get("id")?.value;
   if (typeof devoirId != "number") return;
 
