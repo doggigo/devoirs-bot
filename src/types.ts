@@ -1,21 +1,25 @@
-export type Matiere =
-  | "Mathématiques"
-  | "Informatique"
-  | "S.I."
-  | "Physique"
-  | "Français"
-  | "Anglais";
+export type Matiere = "Mathématiques" | "Informatique" | "S.I." | "Physique" | "Français" | "Anglais";
 
 export const days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
-export class Devoir {
-  date: string;
-  matiere: Matiere;
-  content: string;
+export interface DevoirTable {
+  id: number;
+  matiere: string;
+  date_rendu: string;
+  contenu: string;
+}
 
-  constructor(date: string, matiere: Matiere, content: string) {
-    this.date = date;
-    this.matiere = matiere;
-    this.content = content;
+export function isDevoirTable(obj: unknown): obj is DevoirTable {
+
+  if (typeof obj === "object" && obj !== null) {
+    const devoir = obj as DevoirTable;
+
+    return (
+      typeof devoir.id === "number" &&
+      typeof devoir.matiere === "string" &&
+      typeof devoir.date_rendu === "string" &&
+      typeof devoir.contenu === "string"
+    );
   }
+  return false;
 }
