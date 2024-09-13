@@ -21,7 +21,7 @@ export const { TOKEN, DB_NAME } = Bun.env;
 
 if (!(TOKEN && DB_NAME)) throw new Error(".env is not set correctly");
 
-const db = sqlite.open(DB_NAME);
+export const db = sqlite.open(DB_NAME);
 
 const intents: GatewayIntentBits[] = [
   GatewayIntentBits.Guilds,

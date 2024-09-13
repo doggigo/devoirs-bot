@@ -1,8 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder, type CommandInteraction } from "discord.js";
 import sqlite from "bun:sqlite";
-
+import { db } from "..";
 import { isDevoirTable, type DevoirTable } from "../types";
-import { DB_NAME } from "..";
 
 export const data = new SlashCommandBuilder()
   .setName("devoirs")
@@ -12,10 +11,8 @@ export const data = new SlashCommandBuilder()
 const translateDate = (d: string) => `${d.substring(8, 10)}/${d.substring(5, 7)}/${d.substring(0, 4)}`;
 
 export async function execute(interaction: CommandInteraction) {
-  const db = sqlite.open(`${DB_NAME}`);
   let devoirs: any[] | null = db.query("SELECT * FROM Devoirs WHERE DATE(date_rendu) >= DATE('now');").all();
 
-  if(!devoirs) return;
   devoirs = devoirs.every((d) => isDevoirTable(d)) ? (devoirs as DevoirTable[]) : null;
   if (!devoirs) return;
 
