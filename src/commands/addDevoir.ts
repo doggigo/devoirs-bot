@@ -1,7 +1,5 @@
-import { CommandInteraction, SlashCommandBuilder } from "discord.js";
-import sqlite, { Database } from "bun:sqlite";
+import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { dataBase } from "..";
-// import { getDevoirs } from "../db";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")
@@ -32,6 +30,16 @@ export async function execute(interaction: CommandInteraction) {
   let date = interaction.options.get("date")?.value as string;
   let content = interaction.options.get("contenu")?.value as string;
   let query = dataBase.query("INSERT INTO Devoirs(matiere, date_rendu, contenu) VALUES (?,?,?)");
-  let res = query.get(matiere, date, content);
-  // TODO message de reponse
+  query.get(matiere, date, content);
+
+  const embed = new EmbedBuilder()
+    .setAuthor({
+      name: interaction.user.username,
+    })
+    .setTitle("Devoir ajouté")
+    .setDescription(`Matière : ${matiere}\n Date : ${date} \n Contenu : ${content}`)
+    .setColor("#00b0f4")
+    .setTimestamp();
+
+  await interaction.reply({ embeds: [embed] });
 }

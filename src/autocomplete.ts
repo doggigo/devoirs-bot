@@ -27,7 +27,6 @@ const generateDatesFromDay = (s: string) => {
     }
   }
   let obj = generateDateAutocompleteObject(res);
-  console.log(obj);
   return obj;
 };
 
@@ -60,7 +59,6 @@ export const handleDateAutoComplete = async (interaction: AutocompleteInteractio
   const focusedValue = interaction.options.getFocused();
 
   let results;
-  console.log(`value : '${focusedValue}'`);
   if (detectDay(focusedValue)) {
     results = generateDatesFromDay(focusedValue);
   } else {
