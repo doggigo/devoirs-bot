@@ -30,10 +30,12 @@ const generateDatesFromDay = (s: string) => {
   return obj;
 };
 
+const convertToReadableDate = (date: Date) => `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+
 const generateDateAutocompleteObject = (obj: Date[]) => {
   return obj.map((i) => {
     return {
-      name: `${days[i.getDay()]} - ${i.toLocaleDateString()}`,
+      name: `${days[i.getDay()]} - ${convertToReadableDate(i)}`,
       value: toSqliteDate(i),
     };
   });

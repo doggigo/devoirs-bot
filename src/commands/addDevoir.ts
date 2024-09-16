@@ -1,6 +1,5 @@
 import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
-import mysql from 'bun:sqlite'
-
+import { db } from "..";
 
 export const data = new SlashCommandBuilder()
   .setName("ajouterdevoir")
@@ -27,8 +26,6 @@ export const data = new SlashCommandBuilder()
   .addStringOption((option) => option.setName("contenu").setDescription("Contenu du devoir").setRequired(true));
 
 export async function execute(interaction: CommandInteraction) {
-  let db = mysql.open('devoirs.db');
-
   let matiere = interaction.options.get("matiere")?.value as string;
   let date = interaction.options.get("date")?.value as string;
   let content = interaction.options.get("contenu")?.value as string;

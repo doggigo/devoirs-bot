@@ -1,6 +1,6 @@
 export type Matiere = "Mathématiques" | "Informatique" | "S.I." | "Physique" | "Français" | "Anglais";
 
-export const days = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+export const days = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 
 export interface DevoirTable {
   id: number;
