@@ -30,7 +30,7 @@ const generateDatesFromDay = (s: string) => {
   return obj;
 };
 
-const convertToReadableDate = (date: Date) => `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+const convertToReadableDate = (date: Date) => `${date.getDate()}/${date.getMonth().toString().padStart(2, "0")}/${date.getFullYear()}`;
 
 const generateDateAutocompleteObject = (obj: Date[]) => {
   return obj.map((i) => {
