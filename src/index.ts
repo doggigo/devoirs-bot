@@ -11,6 +11,7 @@ import sqlite from "bun:sqlite";
 // module augmentations imports
 import "./client-augmentation.d.ts";
 
+import { startBackend } from "./backend.ts";
 // Local imports
 import { LoadSlashCommands } from "./loaders/loadSlashCommands";
 import { fetchSlashCommands } from "./loaders/fetchSlashCommands.ts";
@@ -37,6 +38,7 @@ client.once("ready", async () => {
   console.log(`Connecté en tant que ${client.user?.id}`);
   await fetchSlashCommands();
   await LoadSlashCommands();
+  await startBackend();
 });
 
 const handleChatInputCommand = async (interaction: CommandInteraction) => {

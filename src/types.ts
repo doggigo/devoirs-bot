@@ -1,4 +1,4 @@
-export type Matiere = "Mathématiques" | "Informatique" | "S.I." | "Physique" | "Français" | "Anglais";
+export type Matieres = ["Mathématiques", "Informatique", "S.I.", "Physique", "Français", "Anglais"];
 
 export const days = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 
