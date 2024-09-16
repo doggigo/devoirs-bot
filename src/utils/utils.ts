@@ -1,0 +1,1 @@
+export const capitalize = (text: string) => text[0] + text.substring(1);

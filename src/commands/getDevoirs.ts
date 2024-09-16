@@ -1,6 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder, type CommandInteraction } from "discord.js";
 import { db } from "..";
 import { isDevoirTable, type DevoirTable } from "../types";
+import { capitalize } from "../utils/utils";
 
 export const data = new SlashCommandBuilder()
   .setName("devoirs")
@@ -10,7 +11,7 @@ export const data = new SlashCommandBuilder()
 const translateDate = (d: string) => `${d.substring(8, 10)}/${d.substring(5, 7)}/${d.substring(0, 4)}`;
 
 export async function execute(interaction: CommandInteraction) {
-  let devoirs: any[] | null = db.query("SELECT * FROM Devoirs WHERE DATE(date_rendu) >= DATE('now');").all();
+  let devoirs: any[] | null = db.query("SELECT * FROM Devoirs WHERE DATE(date_rendu) >= DATE('now') ORDER BY date_rendu ASC;").all();
 
   devoirs = devoirs.every((d) => isDevoirTable(d)) ? (devoirs as DevoirTable[]) : null;
   if (!devoirs) return;
@@ -20,7 +21,7 @@ export async function execute(interaction: CommandInteraction) {
   for (let devoir of devoirs) {
     embed.addFields({
       name: `ID : ${devoir["id"]}`,
-      value: `**${devoir["matiere"]} - ${translateDate(devoir["date_rendu"])}** \n**Contenu :** ${devoir["contenu"]} \n\n`,
+      value: `**${capitalize(devoir["matiere"] as string)} - ${translateDate(devoir["date_rendu"])}** \n**Contenu :** ${devoir["contenu"]} \n\n`,
       inline: false,
     });
   }
