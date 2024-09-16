@@ -25,5 +25,12 @@ export async function execute(interaction: CommandInteraction) {
     });
   }
 
+  if (devoirs.length == 0)
+    embed.addFields({
+      name: `Il n'y a actuellement aucun devoir.`,
+      value: `effectuer la commande "/ajouterdevoir" pour ajouter des devoirs`,
+      inline: false,
+    });
+
   await interaction.reply({ content: "", embeds: [embed] });
 }
