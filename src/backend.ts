@@ -11,7 +11,7 @@ if (!SERVER_PORT) {
 const app = server();
 
 
-app.get("/devoirs", (req, res) => {
+app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   if (typeof req.query?.date != "string" || typeof req.query?.subject != "string") {
     return res.status(422).json({error: "Bad arguments"});
@@ -21,7 +21,6 @@ app.get("/devoirs", (req, res) => {
   let devoirs = db.query('SELECT * FROM Devoirs WHERE date_rendu = ? AND matiere = ?').all(date,subject);
 
   if (devoirs) {
-  console.log(devoirs);
     res.status(200).json(devoirs);
   } else {
     res.status(404).json({ error: "No results" });
