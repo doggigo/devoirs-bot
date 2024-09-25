@@ -17,10 +17,11 @@ app.get("/devoirs", (req, res) => {
     return res.status(422).json({error: "Bad arguments"});
   }
   const { date, subject } = req.query;
-  
+
   let devoirs = db.query('SELECT * FROM Devoirs WHERE date_rendu = ? AND matiere = ?').all(date,subject);
 
   if (devoirs) {
+  console.log(devoirs);
     res.status(200).json(devoirs);
   } else {
     res.status(404).json({ error: "No results" });
