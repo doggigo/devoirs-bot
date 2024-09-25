@@ -13,12 +13,12 @@ const app = server();
 
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  if (typeof req.query?.date != "string" || typeof req.query?.subject != "string") {
+  if (typeof req.query?.date != "string" || typeof req.query?.matiere != "string") {
     return res.status(422).json({error: "Bad arguments"});
   }
-  const { date, subject } = req.query;
+  const { date, matiere } = req.query;
 
-  let devoirs = db.query('SELECT * FROM Devoirs WHERE date_rendu = ? AND matiere = ?').all(date,subject);
+  let devoirs = db.query('SELECT * FROM Devoirs WHERE date_rendu = ? AND matiere = ?').all(date,matiere);
 
   if (devoirs) {
     res.status(200).json(devoirs);
